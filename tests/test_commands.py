@@ -1,7 +1,11 @@
+"""
+Module: test_commands.py
+This module contains unit tests for the commands in the App class.
+"""
+
 import pytest
 from app import App
-from app.plugins.goodbye import GoodbyeCommand
-from app.plugins.greet import GreetCommand
+
 
 
 def test_app_greet_command(capfd, monkeypatch):
@@ -13,7 +17,7 @@ def test_app_greet_command(capfd, monkeypatch):
     app = App()
     with pytest.raises(SystemExit) as e:
         app.start()  # Assuming App.start() is now a static method based on previous discussions
-    
+
     assert str(e.value) == "Exiting...", "The app did not exit as expected"
 
 def test_app_menu_command(capfd, monkeypatch):
@@ -25,8 +29,5 @@ def test_app_menu_command(capfd, monkeypatch):
     app = App()
     with pytest.raises(SystemExit) as e:
         app.start()  # Assuming App.start() is now a static method based on previous discussions
-    
+
     assert str(e.value) == "Exiting...", "The app did not exit as expected"
-
-
-
