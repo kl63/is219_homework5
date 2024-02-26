@@ -5,16 +5,6 @@ class Command(ABC):
     def execute(self):
         pass
 
-class MenuCommand(Command):
-    def __init__(self, command_handler):
-        self.command_handler = command_handler
-
-    def execute(self):
-        available_commands = self.command_handler.get_available_commands()
-        print("Available Commands:")
-        for command_name in available_commands:
-            print(command_name)
-
 class CommandHandler:
     def __init__(self):
         self.commands = {}
@@ -23,10 +13,15 @@ class CommandHandler:
         self.commands[command_name] = command
 
     def execute_command(self, command_name: str):
+        """ Look before you leap (LBYL) - Use when its less likely to work
+        if command_name in self.commands:
+            self.commands[command_name].execute()
+        else:
+            print(f"No such command: {command_name}")
+        """
+        """Easier to ask for forgiveness than permission (EAFP) - Use when its going to most likely work"""
         try:
             self.commands[command_name].execute()
         except KeyError:
             print(f"No such command: {command_name}")
 
-    def get_available_commands(self):
-        return list(self.commands.keys())
