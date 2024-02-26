@@ -4,10 +4,23 @@ from app.commands import CommandHandler
 from app.commands import Command
 from app.plugins.menu import MenuCommand
 import multiprocessing
+from dotenv import load_dotenv
+import os
+
+
 
 class App:
     def __init__(self):
+        load_dotenv()
+        self.settings = {}  # Initialize settings as an empty dictionary
+        # Load all environment variables into settings
+        for key, value in os.environ.items():
+            self.settings[key] = value
+        # Default to 'PRODUCTION' if 'ENVIRONMENT' not set
+        self.settings.setdefault('ENVIRONMENT', 'TESTING')   
         self.command_handler = CommandHandler()
+    def get_environment_variable(self, env_var: str = 'ENVIRONMENT'):
+        return self.settings[env_var]
 
     def load_plugins(self):
         plugins_package = 'app.plugins'

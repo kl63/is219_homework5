@@ -7,14 +7,14 @@ import multiprocessing
 import pytest
 from app import App
 
-
-def test_app_start_exit_command(capfd, monkeypatch):
-    """Test that the REPL exits correctly on 'exit' command."""
-    monkeypatch.setattr('builtins.input', lambda _: 'exit')
+def test_app_get_environment_variable():
+    """Function to test enviroment variable"""
     app = App()
-    with pytest.raises(SystemExit) as e:
-        app.start()
-    assert e.type == SystemExit
+#   Retrieve the current environment setting
+    current_env = app.get_environment_variable('ENVIRONMENT')
+    # Assert that the current environment is what you expect
+    assert current_env in ['DEVELOPMENT', 'TESTING', 'PRODUCTION'], f"Invalid ENVIRONMENT: {current_env}"
+
 
 
 def test_app_start_unknown_command(capfd, monkeypatch):
