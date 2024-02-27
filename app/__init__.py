@@ -39,7 +39,7 @@ class App:
 
     def start(self):
         self.load_plugins()
-        print("Type 'exit' to exit or 'menu' to show available command.")
+        print("Type 'exit' to exit.")
         while True:
             self.command_handler.execute_command(input(">>> ").strip())
 
