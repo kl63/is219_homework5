@@ -1,6 +1,6 @@
 import sys
 from decimal import Decimal, InvalidOperation
-from calculator import Calculator
+from app.calculator import Calculator
 from app import App
 
 class OperationCommand:
