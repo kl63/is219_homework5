@@ -1,7 +1,9 @@
+import logging
 import sys
 from app.commands import Command
 
 
 class DiscordCommand(Command):
     def execute(self):
-        print(f'I Will send something to discord')
+        logging.info("I will send something to discord")
+        print(f'I will send something to discord')
